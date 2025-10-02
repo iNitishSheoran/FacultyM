@@ -1,6 +1,7 @@
 import React from 'react';
 import ictImg from '../assets/Uu.png';       // Banner wali image
 import universityLogo from '../assets/Univ.png'; // University logo ka path
+import { Link } from "react-router-dom";
 
 function Body() {
   return (
@@ -33,12 +34,13 @@ function Body() {
           {/* Sidebar Menu */}
           <ul className="space-y-6 text-base font-medium">
             <li className="hover:text-[#FF8040] transition cursor-pointer">📊 Dashboard</li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">👥 Employees List</li>
+            <li className="hover:text-[#FF8040] transition cursor-pointer">
+              <Link to="/faculty-list">👥 Faculty List</Link></li>
             <li className="hover:text-[#FF8040] transition cursor-pointer">📄 Application List</li>
             <li className="hover:text-[#FF8040] transition cursor-pointer">🏢 Department List</li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">📌 Designation List</li>
+            {/* <li className="hover:text-[#FF8040] transition cursor-pointer">📌 Designation List</li> */}
             <li className="hover:text-[#FF8040] transition cursor-pointer">📅 Leave Type List</li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">👤 User List</li>
+            {/* <li className="hover:text-[#FF8040] transition cursor-pointer">👤 User List</li> */}
             <li className="hover:text-[#FF8040] transition cursor-pointer">📑 Reports</li>
           </ul>
 

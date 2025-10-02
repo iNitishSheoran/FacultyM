@@ -10,7 +10,7 @@ function Body() {
         <img 
           src={ictImg} 
           alt="SoICT Header"
-          className="w-full h-56 object-cover"
+          className="w-full h-56.2 object-cover"
         />
       </header>
 

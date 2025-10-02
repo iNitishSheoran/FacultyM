@@ -52,9 +52,9 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F4F4F4]">
-      <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-md border border-gray-200 flex flex-col justify-center" style={{ maxHeight: "90vh" }}>
+      <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-md border border-gray-200 flex flex-col justify-center">
         {/* Logo */}
-        <div className="flex justify-center mb-3">
+        <div className="flex justify-center mb-1">
           <img src={logo} alt="University Logo" className="h-20 w-20" />
         </div>
 
@@ -62,15 +62,15 @@ const Signup = () => {
         <h2 className="text-xl font-bold text-center text-gray-800 mb-1">
           Create Account
         </h2>
-        <h1 className="text-2xl font-bold text-center text-[#0019A8] mb-2">
+        <h1 className="text-2xl font-bold text-center text-[#0019A8] mb-1">
           Faculty Management System
         </h1>
         <p className="text-center text-sm text-gray-600 mb-5">
           Gautam Buddha University
         </p>
 
-        {/* Form */}
-        <form className="space-y-4 overflow-auto" onSubmit={handleSubmit} style={{ maxHeight: "calc(90vh - 150px)" }}>
+        {/* ✅ Fixed Form (no scroll inside card) */}
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {/* Row 1: Full Name + Email */}
           <div className="flex gap-4">
             <div className="flex-1">

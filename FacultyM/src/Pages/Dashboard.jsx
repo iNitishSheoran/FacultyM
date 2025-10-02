@@ -1,5 +1,6 @@
 import React from 'react';
-import ictImg from '../assets/ict.png'; // GBU wali image ka path daalna
+import ictImg from '../assets/ict.png';       // Banner wali image
+import universityLogo from '../assets/Univ.png'; // University logo ka path
 
 function Body() {
   return (
@@ -9,7 +10,7 @@ function Body() {
         <img 
           src={ictImg} 
           alt="SoICT Header"
-          className="w-full h-56.4 object-cover"
+          className="w-full h-56 object-cover"
         />
       </header>
 
@@ -17,9 +18,19 @@ function Body() {
       <main className="flex flex-1">
         {/* Sidebar */}
         <aside className="w-64 bg-[#001BB7] text-white p-6 shadow-xl flex flex-col">
-          <h2 className="text-2xl font-extrabold mb-10 text-center text-[#FF8040] tracking-wide">
-            Admin Panel
-          </h2>
+          {/* University Logo */}
+          <div className="flex flex-col items-center mb-8">
+            <img 
+              src={universityLogo} 
+              alt="University Logo" 
+              className="w-64 h-28 object-contain mb-0"
+            />
+            <h2 className="text-2xl font-extrabold text-center text-[#FF8040] tracking-wide">
+              Admin Panel
+            </h2>
+          </div>
+
+          {/* Sidebar Menu */}
           <ul className="space-y-6 text-base font-medium">
             <li className="hover:text-[#FF8040] transition cursor-pointer">📊 Dashboard</li>
             <li className="hover:text-[#FF8040] transition cursor-pointer">👥 Employees List</li>

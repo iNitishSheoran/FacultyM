@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard";
+import FacultyList from "./Components/FacultyList";
+import AddFaculty from "./Components/AddFaculty";
+import ApplicationList from "./Components/ApplicationList";
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
         {/* Signup Page */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/faculty-list" element={<FacultyList />} />
+        <Route path="/add-faculty" element={<AddFaculty />} />
+        <Route path="/application-list" element={<ApplicationList />} />
+
       </Routes>
     </Router>
   );

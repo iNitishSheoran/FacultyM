@@ -1,7 +1,6 @@
 import React from 'react';
 import ictImg from '../assets/Uu.png';       // Banner wali image
-import { useNavigate } from 'react-router-dom';
-import ictImg from '../assets/ict.png';       // Banner wali image
+import { useNavigate } from 'react-router-dom';      // Banner wali image
 import universityLogo from '../assets/Univ.png'; // University logo ka path
 import { Link } from "react-router-dom";
 import axios from 'axios';

@@ -26,13 +26,13 @@ const Login = () => {
           {/* Username */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Username
+              Username/ Email Id
             </label>
             <div className="flex items-center border rounded-md px-3 border-gray-300 bg-gray-50">
               <FaUser className="text-gray-400 mr-2" />
               <input
                 type="text"
-                placeholder="Enter username"
+                placeholder="Enter email id"
                 className="w-full py-2 bg-transparent focus:outline-none"
               />
             </div>

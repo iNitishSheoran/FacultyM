@@ -1,5 +1,5 @@
 import React from 'react';
-import ictImg from '../assets/ict.png';       // Banner wali image
+import ictImg from '../assets/Uu.png';       // Banner wali image
 import universityLogo from '../assets/Univ.png'; // University logo ka path
 
 function Body() {

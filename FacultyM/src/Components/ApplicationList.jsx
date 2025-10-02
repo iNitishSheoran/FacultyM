@@ -11,8 +11,8 @@ const ApplicationList = () => {
   const [applications, setApplications] = useState([
     {
       id: 1,
-      employee: "NIKHIL SOURI",
-      email: "mymedia.yns@gmail.com",
+      employee: "NITISH SHEORAN",
+      email: "nitish27sheoran@gmail.com",
       department: "Computer Science and Engineering",
       leaveType: "Casual Leave",
       fromDate: "2025-04-26",

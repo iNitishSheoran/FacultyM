@@ -53,11 +53,15 @@ function Body() {
               <Link to="/faculty-list">👥 Faculty List</Link></li>
             <li className="hover:text-[#FF8040] transition cursor-pointer">
               <Link to="/application-list">📄 Application List</Link></li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">🏢 Department List</li>
+            <li className="hover:text-[#FF8040] transition cursor-pointer">
+              <Link to="/department-list">🏢 Department List</Link></li>
             {/* <li className="hover:text-[#FF8040] transition cursor-pointer">📌 Designation List</li> */}
-            <li className="hover:text-[#FF8040] transition cursor-pointer">📅 Leave Type List</li>
+            <li className="hover:text-[#FF8040] transition cursor-pointer">
+              <Link to="/leave-type-list">📅 Leave Type List</Link></li>
             {/* <li className="hover:text-[#FF8040] transition cursor-pointer">👤 User List</li> */}
-            <li className="hover:text-[#FF8040] transition cursor-pointer">📑 Reports</li>
+            <li className="hover:text-[#FF8040] transition cursor-pointer">
+              <Link to="/user-list">Users</Link></li>
+              <li className="hover:text-[#FF8040] transition cursor-pointer">Reports</li>
           </ul>
 
           <div className="mt-auto pt-6 border-t border-white/30">

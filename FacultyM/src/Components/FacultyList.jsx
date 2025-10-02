@@ -9,12 +9,12 @@ const FacultyList = () => {
   const facultyData = [
     {
       id: 1,
-      name: "NIKHIL SOURI",
-      email: "mymedia.yns@gmail.com",
-      phone: "8519980985",
+      name: "NITISH SHEORAN",
+      email: "nitish27sheoran@gmail.com",
+      phone: "7988100765",
       department: "Computer Science and Engineering",
-      designation: "Assistant Professor",
-      joiningDate: "2004-11-10",
+      designation: "Professor",
+      joiningDate: "2004-07-27",
     },
   ];
 

@@ -130,11 +130,14 @@ const Signup = () => {
                 type="number"
                 name="age"
                 value={formData.age}
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, age: Number(e.target.value) }))
+                }
                 placeholder="Enter age"
                 className="w-full px-4 py-2 border rounded-md border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#0044FF]"
                 required
               />
+
             </div>
           </div>
 

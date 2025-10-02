@@ -28,9 +28,10 @@ const Login = () => {
     try {
       const res = await axios.post(
         "http://localhost:2713/login",
-        { email: formData.email, password: formData.password },
+        { email: formData.email, password: formData.password, role: formData.role }, // ✅ include role
         { withCredentials: true }
       );
+
 
       if (!res.data.success) throw new Error("Login failed");
 

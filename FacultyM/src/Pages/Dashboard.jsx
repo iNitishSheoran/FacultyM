@@ -1,8 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ictImg from '../assets/ict.png';       // Banner wali image
 import universityLogo from '../assets/Univ.png'; // University logo ka path
+import axios from 'axios';
 
 function Body() {
+  const navigate = useNavigate();
+
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:2713/logout', {}, { withCredentials: true });
+      navigate('/login'); // redirect to login page after logout
+    } catch (err) {
+      console.error("Logout failed:", err);
+      alert("Logout failed. Try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#E9E9E9] font-sans">
       {/* Header Banner */}
@@ -43,7 +58,13 @@ function Body() {
           </ul>
 
           <div className="mt-auto pt-6 border-t border-white/30">
-            <li className="hover:text-red-400 cursor-pointer transition">➡ Logout</li>
+            {/* Logout */}
+            <li
+              onClick={handleLogout}
+              className="hover:text-red-400 cursor-pointer transition"
+            >
+              ➡ Logout
+            </li>
           </div>
         </aside>
 

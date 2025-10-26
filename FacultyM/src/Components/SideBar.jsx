@@ -25,8 +25,11 @@ const Sidebar = () => {
           alt="University Logo"
           className="w-64 h-28 object-contain mb-0"
         />
-        <h2 className="text-2xl font-extrabold text-center text-[#FF8040] tracking-wide">
-          Admin Panel
+         <h2
+      className="text-2xl font-extrabold text-center text-[#FF8040] tracking-wide cursor-pointer hover:text-orange-400"
+      onClick={() => navigate("/dashboard")}
+    >
+      Admin Panel
         </h2>
       </div>
 

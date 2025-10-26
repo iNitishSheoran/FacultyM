@@ -1,82 +1,27 @@
 import React from 'react';
-import ictImg from '../assets/Uu.png';       // Banner wali image
-import { useNavigate } from 'react-router-dom';      // Banner wali image
-import universityLogo from '../assets/Univ.png'; // University logo ka path
-import { Link } from "react-router-dom";
-import axios from 'axios';
+import ictImg from '../assets/Uu.png';
+import Sidebar from '../Components/SideBar';
 
 function Body() {
-  const navigate = useNavigate();
-
-  // Logout function
-  const handleLogout = async () => {
-    try {
-      await axios.post('http://localhost:2713/logout', {}, { withCredentials: true });
-      navigate('/login'); // redirect to login page after logout
-    } catch (err) {
-      console.error("Logout failed:", err);
-      alert("Logout failed. Try again.");
-    }
-  };
-
   return (
-    <div className="min-h-screen flex flex-col bg-[#E9E9E9] font-sans">
-      {/* Header Banner */}
-      <header className="w-full shadow-md">
-        <img 
-          src={ictImg} 
-          alt="SoICT Header"
-          className="w-full h-56.2 object-cover"
-        />
-      </header>
+    <div className="min-h-screen flex bg-[#E9E9E9] font-sans">
+      
+      {/* Sidebar */}
+      <Sidebar />
 
-      {/* Layout */}
-      <main className="flex flex-1">
-        {/* Sidebar */}
-        <aside className="w-64 bg-[#001BB7] text-white p-6 shadow-xl flex flex-col">
-          {/* University Logo */}
-          <div className="flex flex-col items-center mb-8">
-            <img 
-              src={universityLogo} 
-              alt="University Logo" 
-              className="w-64 h-28 object-contain mb-0"
-            />
-            <h2 className="text-2xl font-extrabold text-center text-[#FF8040] tracking-wide">
-              Admin Panel
-            </h2>
-          </div>
-
-          {/* Sidebar Menu */}
-          <ul className="space-y-6 text-base font-medium">
-            <li className="hover:text-[#FF8040] transition cursor-pointer">📊 Dashboard</li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">
-              <Link to="/faculty-list">👥 Faculty List</Link></li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">
-              <Link to="/application-list">📄 Application List</Link></li>
-            <li className="hover:text-[#FF8040] transition cursor-pointer">
-              <Link to="/department-list">🏢 Department List</Link></li>
-            {/* <li className="hover:text-[#FF8040] transition cursor-pointer">📌 Designation List</li> */}
-            <li className="hover:text-[#FF8040] transition cursor-pointer">
-              <Link to="/leave-type-list">📅 Leave Type List</Link></li>
-            {/* <li className="hover:text-[#FF8040] transition cursor-pointer">👤 User List</li> */}
-            <li className="hover:text-[#FF8040] transition cursor-pointer">
-              <Link to="/user-list">Users</Link></li>
-              <li className="hover:text-[#FF8040] transition cursor-pointer">Reports</li>
-          </ul>
-
-          <div className="mt-auto pt-6 border-t border-white/30">
-            {/* Logout */}
-            <li
-              onClick={handleLogout}
-              className="hover:text-red-400 cursor-pointer transition"
-            >
-              ➡ Logout
-            </li>
-          </div>
-        </aside>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Header Banner */}
+        <header className="w-full shadow-md">
+          <img 
+            src={ictImg} 
+            alt="SoICT Header"
+            className="w-full h-[14rem] object-cover"
+          />
+        </header>
 
         {/* Dashboard */}
-        <section className="flex-1 p-10">
+        <main className="flex-1 p-10">
           <h1 className="text-4xl font-extrabold mb-10 text-[#001BB7] tracking-tight">
             Dashboard
           </h1>
@@ -91,7 +36,7 @@ function Body() {
             ].map((card, i) => (
               <div 
                 key={i} 
-                className={`bg-white rounded-2xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl transform hover:-translate-y-1 transition relative overflow-hidden`}
+                className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl transform hover:-translate-y-1 transition relative overflow-hidden"
               >
                 {/* Gradient Top Border */}
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.color}`} />
@@ -118,8 +63,8 @@ function Body() {
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }

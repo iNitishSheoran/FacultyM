@@ -36,7 +36,7 @@ const Login = () => {
       if (!res.data.success) throw new Error("Login failed");
 
       // Admin check
-      if (formData.role === "admin" && res.data.user.email !== process.env.REACT_APP_ADMIN_EMAIL) {
+      if (formData.role === "admin" && res.data.user.email !== "ict2025gbu@gmail.com") {
         setError("You are not authorized as admin");
         return;
       }

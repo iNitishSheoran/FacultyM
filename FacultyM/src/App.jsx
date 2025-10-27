@@ -10,7 +10,8 @@ import DepartmentList from "./Components/DepartmentList";
 import AddDepartmentModal from "./Components/AddDepartmentModal";
 import LeaveTypeList from "./Components/LeaveTypeList";
 import AddLeaveType from "./Components/AddLeaveType";
-import UserList from "./Components/UserList";
+import ApplyLeave from "./Pages/ApplyLeave";
+
 
 function App() {
   return (
@@ -32,9 +33,7 @@ function App() {
         <Route path="/add-department-list" element={<AddDepartmentModal />} />
         <Route path="/leave-type-list" element={<LeaveTypeList />} />
         <Route path="/add-leave-type" element={<AddLeaveType />} />
-        <Route path="/user-list" element={<UserList />} />
-
-
+        <Route path="/apply-leave" element={<ApplyLeave />} />
       </Routes>
     </Router>
   );

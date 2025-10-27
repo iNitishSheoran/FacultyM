@@ -48,9 +48,8 @@ const Sidebar = () => {
           <Link to="/leave-type-list">📅 Leave Type List</Link>
         </li>
         <li className="hover:text-[#FF8040] transition cursor-pointer">
-          <Link to="/user-list">Users</Link>
+          <Link to="/apply-leave">📅 Apply Leave</Link>
         </li>
-        <li className="hover:text-[#FF8040] transition cursor-pointer">Reports</li>
       </ul>
 
       {/* Logout */}

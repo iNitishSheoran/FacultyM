@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ictImg from "../assets/Uu.png";
+import bannerImg from "../assets/Banner.png"; // 🔥 Popup Banner Import
 import Sidebar from "../Components/Sidebar";
 import axios from "axios";
 
 function Body() {
+  // 🔥 Banner Popup Control
+  const [showBanner, setShowBanner] = useState(true);
+
   const [stats, setStats] = useState({
     totalEmployees: 0,
     totalDepartments: 0,
@@ -11,28 +15,17 @@ function Body() {
     pendingLeaves: 0,
   });
 
+  // Fetch Stats
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // 1️⃣ Total Employees
-        const facultyRes = await axios.get(
-          "http://localhost:2713/faculties",
-          { withCredentials: true }
-        );
+        const facultyRes = await axios.get("http://localhost:2713/faculties", { withCredentials: true });
         const totalEmployees = facultyRes.data?.count || 0;
 
-        // 2️⃣ Total Departments
-        const deptRes = await axios.get(
-          "http://localhost:2713/departments",
-          { withCredentials: true }
-        );
+        const deptRes = await axios.get("http://localhost:2713/departments", { withCredentials: true });
         const totalDepartments = deptRes.data?.departments?.length || 0;
 
-        // 3️⃣ Total Leave Applications & Pending
-        const leavesRes = await axios.get(
-          "http://localhost:2713/leaves",
-          { withCredentials: true }
-        );
+        const leavesRes = await axios.get("http://localhost:2713/leaves", { withCredentials: true });
         const allLeaves = leavesRes.data?.leaves || [];
         const totalLeaves = allLeaves.length;
         const pendingLeaves = allLeaves.filter(l => l.status === "pending").length;
@@ -46,6 +39,7 @@ function Body() {
     fetchStats();
   }, []);
 
+  // Cards Data
   const cards = [
     { title: "Total Employees", value: stats.totalEmployees, color: "from-[#0046FF] to-[#001BB7]" },
     { title: "Total Departments", value: stats.totalDepartments, color: "from-[#0046FF] to-[#00AEEF]" },
@@ -55,15 +49,40 @@ function Body() {
 
   return (
     <div className="min-h-screen flex bg-[#E9E9E9] font-sans">
+
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
+
+        {/* 🔥 POPUP BANNER */}
+        {showBanner && (
+          <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+            <div className="relative bg-white rounded-xl shadow-2xl p-3 max-w-4xl w-[90%]">
+
+              {/* Close Button */}
+              <button
+                onClick={() => setShowBanner(false)}
+                className="absolute top-2 right-2 text-white bg-red-600 hover:bg-red-700 p-2 rounded-full shadow-lg"
+              >
+                ✖
+              </button>
+
+              {/* Banner Image */}
+              <img
+                src={bannerImg}
+                alt="Banner"
+                className="rounded-lg max-h-[80vh] object-contain"
+              />
+            </div>
+          </div>
+        )}
+
         {/* Header Banner */}
         <header className="w-full shadow-md">
-          <img 
-            src={ictImg} 
+          <img
+            src={ictImg}
             alt="SoICT Header"
             className="w-full h-[14rem] object-cover"
           />
@@ -78,13 +97,12 @@ function Body() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {cards.map((card, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl transform hover:-translate-y-1 transition relative overflow-hidden"
               >
-                {/* Gradient Top Border */}
                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.color}`} />
-                
+
                 <h2 className="text-sm font-semibold text-gray-600 mb-2">{card.title}</h2>
                 <p className="text-3xl font-bold text-[#001BB7]">{card.value}</p>
               </div>

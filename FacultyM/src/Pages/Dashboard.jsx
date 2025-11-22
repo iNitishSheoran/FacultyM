@@ -106,9 +106,13 @@ function Body() {
 
   return (
     <div className="min-h-screen flex bg-[#F3F4F8] font-sans overflow-x-hidden">
-      <Sidebar />
+      {/* FIXED SIDEBAR */}
+      <div className="w-64 min-w-64 h-screen shadow-lg bg-white fixed left-0 top-0 overflow-y-auto">
+        <Sidebar />
+      </div>
 
-      <div className="flex-1 flex flex-col">
+
+      <div className="flex-1 flex flex-col ml-64">
         {showBanner && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 animate-fadeIn">
             <div className="relative bg-white rounded-3xl shadow-2xl p-4 max-w-4xl w-[90%] border border-gray-200 animate-scaleIn">

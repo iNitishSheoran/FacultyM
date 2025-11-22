@@ -12,7 +12,7 @@ const ApplicationList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Fetch all leave applications (admin only)
+  // Fetch all leave applications (admin only)
   const fetchApplications = async () => {
     try {
       setLoading(true);
@@ -29,6 +29,7 @@ const ApplicationList = () => {
 
       const data = await res.json();
       if (!data.success) throw new Error(data.message || "Failed to fetch leaves");
+
       setApplications(data.leaves || []);
     } catch (err) {
       console.error("❌ Error fetching leaves:", err);
@@ -42,11 +43,12 @@ const ApplicationList = () => {
     fetchApplications();
   }, []);
 
-  // ✅ Filter handlers
-  const handleChange = (e) => setFilters({ ...filters, [e.target.name]: e.target.value });
-  const handleReset = () => setFilters({ status: "", department: "", fromDate: "", toDate: "" });
+  const handleChange = (e) =>
+    setFilters({ ...filters, [e.target.name]: e.target.value });
 
-  // ✅ Approve or Reject Leave
+  const handleReset = () =>
+    setFilters({ status: "", department: "", fromDate: "", toDate: "" });
+
   const updateStatus = async (id, status) => {
     try {
       const res = await fetch(`http://localhost:2713/leaves/${id}/status`, {
@@ -64,9 +66,9 @@ const ApplicationList = () => {
     }
   };
 
-  // ✅ Delete Leave
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this leave?")) return;
+
     try {
       const res = await fetch(`http://localhost:2713/leaves/${id}`, {
         method: "DELETE",
@@ -81,22 +83,25 @@ const ApplicationList = () => {
     }
   };
 
-  // ✅ Apply filters
   const filteredApplications = applications.filter((app) => {
     const matchesStatus =
       !filters.status || app.status.toLowerCase() === filters.status.toLowerCase();
+
     const matchesDept =
       !filters.department ||
       (app.user?.department || "")
         .toLowerCase()
         .includes(filters.department.toLowerCase());
+
     const matchesFrom =
       !filters.fromDate || new Date(app.fromDate) >= new Date(filters.fromDate);
-    const matchesTo = !filters.toDate || new Date(app.toDate) <= new Date(filters.toDate);
+
+    const matchesTo =
+      !filters.toDate || new Date(app.toDate) <= new Date(filters.toDate);
+
     return matchesStatus && matchesDept && matchesFrom && matchesTo;
   });
 
-  // ✅ Styled Access Denied Message
   if (error.toLowerCase().includes("access denied")) {
     return (
       <div className="flex min-h-screen bg-[#F7F9FC] items-center justify-center">
@@ -123,91 +128,103 @@ const ApplicationList = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#F7F9FC]">
+ <div className="flex min-h-screen bg-[#F7F9FC]">
+
+    {/* FIXED SIDEBAR */}
+    <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
       <Sidebar />
-      <div className="flex-1 p-8">
-        <h1 className="text-3xl font-bold text-[#001BB7] mb-6">Leave Applications</h1>
+    </div>
 
-        {/* Filter Section */}
-        <div className="bg-white shadow-md rounded-lg p-6 mb-6 border border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-600">Status</label>
-              <select
-                name="status"
-                value={filters.status}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-              >
-                <option value="">All Status</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-              </select>
-            </div>
+    {/* MAIN CONTENT */}
+    <div className="flex-1 p-8 overflow-y-auto min-w-0">
 
-            <div>
-              <label className="block text-sm font-medium text-gray-600">Department</label>
-              <input
-                type="text"
-                name="department"
-                placeholder="e.g. CSE"
-                value={filters.department}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-              />
-            </div>
+      <h1 className="text-3xl font-bold text-[#001BB7] mb-6">
+        Leave Applications
+      </h1>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-600">From Date</label>
-              <input
-                type="date"
-                name="fromDate"
-                value={filters.fromDate}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-              />
-            </div>
+      {/* Filter Section */}
+      <div className="bg-white shadow-md rounded-lg p-6 mb-6 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-600">Status</label>
+            <select
+              name="status"
+              value={filters.status}
+              onChange={handleChange}
+              className="w-full border px-3 py-2 rounded-md"
+            >
+              <option value="">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-600">To Date</label>
-              <input
-                type="date"
-                name="toDate"
-                value={filters.toDate}
-                onChange={handleChange}
-                className="w-full border px-3 py-2 rounded-md"
-              />
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600">Department</label>
+            <input
+              type="text"
+              name="department"
+              placeholder="e.g. CSE"
+              value={filters.department}
+              onChange={handleChange}
+              className="w-full border px-3 py-2 rounded-md"
+            />
+          </div>
 
-            <div className="flex items-end space-x-3">
-              <button
-                onClick={() => fetchApplications()}
-                className="bg-[#001BB7] text-white px-4 py-2 rounded-md hover:bg-[#FF8040] transition"
-              >
-                Filter
-              </button>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="text-gray-500 hover:text-red-500"
-              >
-                Reset
-              </button>
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600">From Date</label>
+            <input
+              type="date"
+              name="fromDate"
+              value={filters.fromDate}
+              onChange={handleChange}
+              className="w-full border px-3 py-2 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-600">To Date</label>
+            <input
+              type="date"
+              name="toDate"
+              value={filters.toDate}
+              onChange={handleChange}
+              className="w-full border px-3 py-2 rounded-md"
+            />
+          </div>
+
+          <div className="flex items-end space-x-3">
+            <button
+              onClick={() => fetchApplications()}
+              className="bg-[#001BB7] text-white px-4 py-2 rounded-md hover:bg-[#FF8040] transition"
+            >
+              Filter
+            </button>
+
+            <button
+              type="button"
+              onClick={handleReset}
+              className="text-gray-500 hover:text-red-500"
+            >
+              Reset
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Applications Table */}
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
-          {loading ? (
-            <p className="p-6 text-center">Loading applications...</p>
-          ) : error ? (
-            <p className="p-6 text-center text-red-600">{error}</p>
-          ) : filteredApplications.length === 0 ? (
-            <p className="p-6 text-center text-gray-500">No applications found.</p>
-          ) : (
-            <table className="w-full text-left border-collapse">
+      {/* Applications Table */}
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+
+        {loading ? (
+          <p className="p-6 text-center">Loading applications...</p>
+        ) : error ? (
+          <p className="p-6 text-center text-red-600">{error}</p>
+        ) : filteredApplications.length === 0 ? (
+          <p className="p-6 text-center text-gray-500">No applications found.</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-max">
               <thead>
                 <tr className="bg-[#001BB7] text-white">
                   <th className="px-4 py-3">Employee</th>
@@ -222,19 +239,23 @@ const ApplicationList = () => {
                   <th className="px-4 py-3">Actions</th>
                 </tr>
               </thead>
+
               <tbody>
                 {filteredApplications.map((app) => (
                   <tr key={app._id} className="hover:bg-gray-100 transition border-b">
+
                     <td className="px-4 py-3">
                       <div className="font-semibold">{app.user?.fullName}</div>
                       <div className="text-sm text-gray-500">{app.user?.email}</div>
                     </td>
+
                     <td className="px-4 py-3">{app.user?.department}</td>
                     <td className="px-4 py-3">{app.leaveType?.name}</td>
                     <td className="px-4 py-3">{app.fromDate?.split("T")[0]}</td>
                     <td className="px-4 py-3">{app.toDate?.split("T")[0]}</td>
                     <td className="px-4 py-3">{app.totalDays}</td>
                     <td className="px-4 py-3">{app.reason}</td>
+
                     <td className="px-4 py-3">
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-bold ${
@@ -248,9 +269,11 @@ const ApplicationList = () => {
                         {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
                       </span>
                     </td>
+
                     <td className="px-4 py-3">
                       {new Date(app.createdAt).toLocaleString()}
                     </td>
+
                     <td className="px-4 py-3 flex space-x-2">
                       <button
                         onClick={() => updateStatus(app._id, "approved")}
@@ -258,12 +281,14 @@ const ApplicationList = () => {
                       >
                         Approve
                       </button>
+
                       <button
                         onClick={() => updateStatus(app._id, "rejected")}
                         className="bg-yellow-500 text-white px-3 py-1 rounded-md text-sm hover:bg-yellow-600"
                       >
                         Reject
                       </button>
+
                       <button
                         onClick={() => handleDelete(app._id)}
                         className="bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-600"
@@ -271,15 +296,19 @@ const ApplicationList = () => {
                         Delete
                       </button>
                     </td>
+
                   </tr>
                 ))}
               </tbody>
             </table>
-          )}
-        </div>
+          </div>
+        )}
+
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default ApplicationList;

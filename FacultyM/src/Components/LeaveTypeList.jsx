@@ -120,7 +120,10 @@ const LeaveTypeList = () => {
 
   return (
     <div className="flex min-h-screen bg-[#F7F9FC]">
-      <Sidebar />
+      {/* FIXED SIDEBAR */}
+      <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
+        <Sidebar />
+      </div>
 
       <div className="flex-1 p-6">
         <div className="flex justify-between items-center mb-6">

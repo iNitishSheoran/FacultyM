@@ -105,7 +105,10 @@ const ApplyLeave = () => {
 
   return (
     <div className="min-h-screen flex bg-[#F7F9FC]">
-      <Sidebar />
+      {/* FIXED SIDEBAR */}
+      <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
+        <Sidebar />
+      </div>
       <div className="flex-1 p-6 flex flex-col items-center">
         <h1 className="text-2xl font-bold text-[#001BB7] mb-6">Apply for Leave</h1>
 

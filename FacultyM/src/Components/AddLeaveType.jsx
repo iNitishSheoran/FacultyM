@@ -35,7 +35,7 @@ const AddLeaveType = () => {
         "http://localhost:2713/leave-types",
         formData,
         {
-          withCredentials:"true",
+          withCredentials: "true",
         }
       );
 
@@ -47,7 +47,7 @@ const AddLeaveType = () => {
       console.error("❌ Error adding leave type:", err);
       setError(
         err.response?.data?.message ||
-          "Failed to add leave type. Please try again."
+        "Failed to add leave type. Please try again."
       );
     } finally {
       setLoading(false);
@@ -57,7 +57,10 @@ const AddLeaveType = () => {
   return (
     <div className="min-h-screen flex bg-[#F7F9FC]">
       {/* Sidebar */}
-      <Sidebar />
+      {/* FIXED SIDEBAR */}
+      <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
+        <Sidebar />
+      </div>
 
       {/* Main Section */}
       <div className="flex-1 flex items-center justify-center p-6">
@@ -136,9 +139,8 @@ const AddLeaveType = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`${
-                loading ? "bg-gray-400" : "bg-[#001BB7] hover:bg-[#FF8040]"
-              } text-white px-5 py-2 rounded-md transition font-medium w-full`}
+              className={`${loading ? "bg-gray-400" : "bg-[#001BB7] hover:bg-[#FF8040]"
+                } text-white px-5 py-2 rounded-md transition font-medium w-full`}
             >
               {loading ? "Saving..." : "Save Leave Type"}
             </button>

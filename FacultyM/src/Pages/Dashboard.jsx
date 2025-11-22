@@ -7,9 +7,9 @@ import axios from "axios";
 import Chatbot from "../Components/Chatbot";
 import toast from "react-hot-toast";
 
-
 function Body() {
   const [showBanner, setShowBanner] = useState(true);
+
   const [stats, setStats] = useState({
     totalEmployees: 0,
     totalDepartments: 0,
@@ -21,9 +21,15 @@ function Body() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const facultyRes = await axios.get("http://localhost:2713/faculties", { withCredentials: true });
-        const deptRes = await axios.get("http://localhost:2713/departments", { withCredentials: true });
-        const leavesRes = await axios.get("http://localhost:2713/leaves", { withCredentials: true });
+        const facultyRes = await axios.get("http://localhost:2713/faculties", {
+          withCredentials: true,
+        });
+        const deptRes = await axios.get("http://localhost:2713/departments", {
+          withCredentials: true,
+        });
+        const leavesRes = await axios.get("http://localhost:2713/leaves", {
+          withCredentials: true,
+        });
 
         const allLeaves = leavesRes.data?.leaves || [];
 
@@ -41,6 +47,8 @@ function Body() {
     fetchStats();
   }, []);
 
+
+  // Notification Popup
   useEffect(() => {
     const checkNotifications = async () => {
       try {
@@ -54,12 +62,10 @@ function Body() {
         if (notifications.length === 0) return;
 
         for (const leave of notifications) {
-          // 1. Show toast notification
           toast.success(`Your leave has been ${leave.status}!`, {
             duration: 5000,
           });
 
-          // 2. Mark notification as shown
           await axios.put(
             `http://localhost:2713/leaves/${leave._id}/mark-notified`,
             {},
@@ -75,8 +81,6 @@ function Body() {
   }, []);
 
 
-
-  // Dashboard Cards
   const cards = [
     {
       title: "Total Employees",
@@ -104,15 +108,43 @@ function Body() {
     },
   ];
 
+
+  const notices = [
+    {
+      title: "Faculty Meeting Scheduled",
+      description: "All faculty members are requested to attend the meeting tomorrow at 10:00 AM in the main auditorium.",
+      date: "24 Nov 2025",
+    },
+    {
+      title: "Time Table Update",
+      description: "Updated timetable has been released for all departments. Students are advised to check the academic portal.",
+      date: "22 Nov 2025",
+    },
+    {
+      title: "Feedback Form",
+      description: "Kindly complete the monthly feedback form. Your response is important for quality improvement.",
+      date: "20 Nov 2025",
+      link: "https://forms.google.com",
+    },
+    {
+      title: "Holiday Announcement",
+      description: "Campus will remain closed on Friday due to maintenance activities. Classes will resume normally from Saturday.",
+      date: "18 Nov 2025",
+    },
+  ];
+
+
   return (
     <div className="min-h-screen flex bg-[#F3F4F8] font-sans overflow-x-hidden">
-      {/* FIXED SIDEBAR */}
+
+      {/* Fixed Sidebar */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white fixed left-0 top-0 overflow-y-auto">
         <Sidebar />
       </div>
 
-
       <div className="flex-1 flex flex-col ml-64">
+
+        {/* Popup Banner */}
         {showBanner && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 animate-fadeIn">
             <div className="relative bg-white rounded-3xl shadow-2xl p-4 max-w-4xl w-[90%] border border-gray-200 animate-scaleIn">
@@ -123,11 +155,16 @@ function Body() {
                 ✖
               </button>
 
-              <img src={bannerImg} alt="Popup Banner" className="rounded-2xl max-h-[80vh] object-contain" />
+              <img
+                src={bannerImg}
+                alt="Popup Banner"
+                className="rounded-2xl max-h-[80vh] object-contain"
+              />
             </div>
           </div>
         )}
 
+        {/* Header */}
         <header className="w-full shadow-md">
           <img
             src={ictImg}
@@ -137,10 +174,12 @@ function Body() {
         </header>
 
         <main className="flex-1 p-10">
+
           <h1 className="text-5xl font-extrabold mb-12 text-[#0A1D56] tracking-tight animate-fadeIn">
             Dashboard
           </h1>
 
+          {/* Dashboard Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {cards.map((card, i) => (
               <div
@@ -148,15 +187,12 @@ function Body() {
                 className="relative bg-white rounded-3xl shadow-lg p-7 border border-gray-100 hover:shadow-3xl hover:-translate-y-2 transition-all transform overflow-hidden animate-fadeInUp"
               >
                 <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${card.gradient}`} />
-
                 <div className="relative z-10">
-                  <div className="text-4xl mb-3 drop-shadow-sm">{card.icon}</div>
-
+                  <div className="text-4xl mb-3">{card.icon}</div>
                   <h2 className="text-md font-semibold text-gray-600 mb-1">
                     {card.title}
                   </h2>
-
-                  <p className="text-5xl font-extrabold text-[#0A1D56] tracking-tight">
+                  <p className="text-5xl font-extrabold text-[#0A1D56]">
                     {card.value}
                   </p>
                 </div>
@@ -164,26 +200,42 @@ function Body() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-14">
-            <div className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-3xl transition-all border border-gray-200 animate-fadeInUp delay-100">
-              <h2 className="text-xl font-bold mb-4 text-[#0A1D56] tracking-wide">
-                Leave Type Distribution
-              </h2>
-              <div className="h-60 flex items-center justify-center text-gray-400 text-base italic">
-                Pie Chart Placeholder
-              </div>
-            </div>
+          {/* Notice Board - Professional Look */}
+          <div className="mt-14">
+            <div className="bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
 
-            <div className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-3xl transition-all border border-gray-200 animate-fadeInUp delay-200">
-              <h2 className="text-xl font-bold mb-4 text-[#0A1D56] tracking-wide">
-                Department Leave Statistics
+              <h2 className="text-3xl font-bold mb-8 text-[#0A1D56] flex items-center gap-3">
+                📌 Notice Board
               </h2>
-              <div className="h-60 flex items-center justify-center text-gray-400 text-base italic">
-                Bar Chart Placeholder
+
+              <div className="space-y-5">
+                {notices.map((n, i) => (
+                  <div
+                    key={i}
+                    className="border border-gray-300 bg-[#F9FAFB] rounded-xl p-5 hover:bg-white transition shadow-sm"
+                  >
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-lg font-semibold text-gray-900">{n.title}</h3>
+                      <span className="text-sm text-gray-600 font-medium">{n.date}</span>
+                    </div>
+
+                    <p className="text-gray-700 mt-2 leading-relaxed">
+                      {n.description}
+                    </p>
+
+                    {n.link && (
+                      <a href={n.link} target="_blank" className="text-blue-700 underline mt-2 inline-block font-medium">
+                        👉 Open Form
+                      </a>
+                    )}
+                  </div>
+                ))}
               </div>
+
             </div>
           </div>
         </main>
+
         <Chatbot />
         <Footer />
       </div>

@@ -4,6 +4,8 @@ import bannerImg from "../assets/Banner.png";
 import Footer from "../Components/Footer";
 import Sidebar from "../Components/Sidebar";
 import axios from "axios";
+import Chatbot from "../Components/Chatbot";
+
 
 function Body() {
   const [showBanner, setShowBanner] = useState(true);
@@ -140,7 +142,7 @@ function Body() {
             </div>
           </div>
         </main>
-
+        <Chatbot />
         <Footer />
       </div>
     </div>

@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import Sidebar from "../Components/Sidebar";
 import axios from "axios";
 import Chatbot from "../Components/Chatbot";
+import toast from "react-hot-toast";
 
 
 function Body() {
@@ -39,6 +40,41 @@ function Body() {
 
     fetchStats();
   }, []);
+
+  useEffect(() => {
+    const checkNotifications = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:2713/leaves/notifications/pending",
+          { withCredentials: true }
+        );
+
+        const notifications = res.data.notifications || [];
+
+        if (notifications.length === 0) return;
+
+        for (const leave of notifications) {
+          // 1. Show toast notification
+          toast.success(`Your leave has been ${leave.status}!`, {
+            duration: 5000,
+          });
+
+          // 2. Mark notification as shown
+          await axios.put(
+            `http://localhost:2713/leaves/${leave._id}/mark-notified`,
+            {},
+            { withCredentials: true }
+          );
+        }
+      } catch (err) {
+        console.error("❌ Notification check error:", err);
+      }
+    };
+
+    checkNotifications();
+  }, []);
+
+
 
   // Dashboard Cards
   const cards = [

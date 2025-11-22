@@ -53,6 +53,9 @@ const Sidebar = () => {
         <li className="hover:text-[#FF8040] transition cursor-pointer">
           <Link to="/apply-leave">📅 Apply Leave</Link>
         </li>
+        <li className="hover:text-[#FF8040] transition cursor-pointer">
+          <Link to="/faculty-load">Faculty Load Report</Link>
+        </li>
       </ul>
 
       {/* Logout */}

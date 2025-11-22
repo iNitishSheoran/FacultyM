@@ -11,7 +11,7 @@ import AddDepartmentModal from "./Components/AddDepartmentModal";
 import LeaveTypeList from "./Components/LeaveTypeList";
 import AddLeaveType from "./Components/AddLeaveType";
 import ApplyLeave from "./Pages/ApplyLeave";
-
+import FacultyLoad from "./Components/FacultyLoad";
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
         <Route path="/leave-type-list" element={<LeaveTypeList />} />
         <Route path="/add-leave-type" element={<AddLeaveType />} />
         <Route path="/apply-leave" element={<ApplyLeave />} />
+        <Route path="/faculty-load" element={<FacultyLoad />} />
       </Routes>
     </Router>
   );

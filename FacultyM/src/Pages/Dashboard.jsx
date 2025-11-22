@@ -47,7 +47,6 @@ function Body() {
     fetchStats();
   }, []);
 
-
   // Notification Popup
   useEffect(() => {
     const checkNotifications = async () => {
@@ -80,7 +79,6 @@ function Body() {
     checkNotifications();
   }, []);
 
-
   const cards = [
     {
       title: "Total Employees",
@@ -108,43 +106,41 @@ function Body() {
     },
   ];
 
-
   const notices = [
     {
       title: "Faculty Meeting Scheduled",
-      description: "All faculty members are requested to attend the meeting tomorrow at 10:00 AM in the main auditorium.",
+      description:
+        "All faculty members are requested to attend the meeting tomorrow at 10:00 AM in the main auditorium.",
       date: "24 Nov 2025",
     },
     {
       title: "Time Table Update",
-      description: "Updated timetable has been released for all departments. Students are advised to check the academic portal.",
+      description:
+        "Updated timetable has been released for all departments. Students are advised to check the academic portal.",
       date: "22 Nov 2025",
     },
     {
       title: "Feedback Form",
-      description: "Kindly complete the monthly feedback form. Your response is important for quality improvement.",
+      description:
+        "Kindly complete the monthly feedback form. Your response is important for quality improvement.",
       date: "20 Nov 2025",
       link: "https://forms.google.com",
     },
     {
       title: "Holiday Announcement",
-      description: "Campus will remain closed on Friday due to maintenance activities. Classes will resume normally from Saturday.",
+      description:
+        "Campus will remain closed on Friday due to maintenance activities. Classes will resume normally from Saturday.",
       date: "18 Nov 2025",
     },
   ];
 
-
   return (
     <div className="min-h-screen flex bg-[#F3F4F8] font-sans overflow-x-hidden">
-
-      {/* Fixed Sidebar */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white fixed left-0 top-0 overflow-y-auto">
         <Sidebar />
       </div>
 
       <div className="flex-1 flex flex-col ml-64">
-
-        {/* Popup Banner */}
         {showBanner && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 animate-fadeIn">
             <div className="relative bg-white rounded-3xl shadow-2xl p-4 max-w-4xl w-[90%] border border-gray-200 animate-scaleIn">
@@ -164,7 +160,6 @@ function Body() {
           </div>
         )}
 
-        {/* Header */}
         <header className="w-full shadow-md">
           <img
             src={ictImg}
@@ -174,19 +169,19 @@ function Body() {
         </header>
 
         <main className="flex-1 p-10">
-
           <h1 className="text-5xl font-extrabold mb-12 text-[#0A1D56] tracking-tight animate-fadeIn">
             Dashboard
           </h1>
 
-          {/* Dashboard Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {cards.map((card, i) => (
               <div
                 key={i}
                 className="relative bg-white rounded-3xl shadow-lg p-7 border border-gray-100 hover:shadow-3xl hover:-translate-y-2 transition-all transform overflow-hidden animate-fadeInUp"
               >
-                <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${card.gradient}`} />
+                <div
+                  className={`absolute inset-0 opacity-20 bg-gradient-to-br ${card.gradient}`}
+                />
                 <div className="relative z-10">
                   <div className="text-4xl mb-3">{card.icon}</div>
                   <h2 className="text-md font-semibold text-gray-600 mb-1">
@@ -200,23 +195,40 @@ function Body() {
             ))}
           </div>
 
-          {/* Notice Board - Professional Look */}
+          {/* 🔥 NEW PROFESSIONAL NOTICE BOARD */}
           <div className="mt-14">
             <div className="bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
-
               <h2 className="text-3xl font-bold mb-8 text-[#0A1D56] flex items-center gap-3">
                 📌 Notice Board
               </h2>
 
-              <div className="space-y-5">
+              <div className="space-y-6">
                 {notices.map((n, i) => (
                   <div
                     key={i}
-                    className="border border-gray-300 bg-[#F9FAFB] rounded-xl p-5 hover:bg-white transition shadow-sm"
+                    className="
+                      group
+                      relative
+                      bg-[#FAFAFA]
+                      border border-gray-200
+                      rounded-xl
+                      p-6
+                      shadow-sm
+                      hover:shadow-md
+                      transition-all
+                      overflow-hidden
+                    "
                   >
+                    {/* Left color bar on hover */}
+                    <div className="absolute left-0 top-0 h-full w-1 bg-blue-600 opacity-0 group-hover:opacity-100 transition-all"></div>
+
                     <div className="flex justify-between items-start">
-                      <h3 className="text-lg font-semibold text-gray-900">{n.title}</h3>
-                      <span className="text-sm text-gray-600 font-medium">{n.date}</span>
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-700 transition">
+                        {n.title}
+                      </h3>
+                      <span className="text-sm text-gray-500 font-medium">
+                        {n.date}
+                      </span>
                     </div>
 
                     <p className="text-gray-700 mt-2 leading-relaxed">
@@ -224,14 +236,17 @@ function Body() {
                     </p>
 
                     {n.link && (
-                      <a href={n.link} target="_blank" className="text-blue-700 underline mt-2 inline-block font-medium">
+                      <a
+                        href={n.link}
+                        target="_blank"
+                        className="text-blue-700 font-medium mt-2 inline-block group-hover:underline"
+                      >
                         👉 Open Form
                       </a>
                     )}
                   </div>
                 ))}
               </div>
-
             </div>
           </div>
         </main>

@@ -15,6 +15,7 @@ const ApplyLeave = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [remainingDays, setRemainingDays] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
 
   // ✅ Fetch all leave types
@@ -38,13 +39,32 @@ const ApplyLeave = () => {
   }, []);
 
   // ✅ Handle input change
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    // If leave type changed → fetch remaining leaves
+    if (name === "leaveType" && value) {
+      try {
+        const res = await fetch(`http://localhost:2713/leaves/remaining/${value}`, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          setRemainingDays(data.remainingDays);
+        }
+      } catch (err) {
+        console.log("Remaining leave error", err);
+      }
+    }
   };
+
 
   // ✅ Submit Leave Application
   const handleSubmit = async (e) => {
@@ -112,6 +132,11 @@ const ApplyLeave = () => {
                 </option>
               ))}
             </select>
+            {formData.leaveType && remainingDays !== null && (
+              <p className="text-sm mt-1 text-blue-600 font-medium">
+                Remaining leaves available: <span className="font-bold">{remainingDays}</span>
+              </p>
+            )}
           </div>
 
           {/* From Date */}

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import Sidebar from "../Components/Sidebar";
 
 const FacultyList = () => {
-  const navigate = useNavigate();
   const [facultyData, setFacultyData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

@@ -21,24 +21,58 @@ function Body() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
+        // Fetch logged-in user
+        const userRes = await axios.get("http://localhost:2713/user", {
+          withCredentials: true,
+        });
+
+        const isAdmin = userRes.data?.isAdmin;
+
+        //Fetch stats common for all users (Employees + Departments)
         const facultyRes = await axios.get("http://localhost:2713/faculties", {
           withCredentials: true,
         });
+
         const deptRes = await axios.get("http://localhost:2713/departments", {
           withCredentials: true,
         });
-        const leavesRes = await axios.get("http://localhost:2713/leaves", {
-          withCredentials: true,
-        });
 
-        const allLeaves = leavesRes.data?.leaves || [];
+        const totalEmployees = facultyRes.data?.count || 0;
+        const totalDepartments = deptRes.data?.departments?.length || 0;
+
+        // If admin → show global leaves
+        if (isAdmin) {
+          const leavesRes = await axios.get("http://localhost:2713/leaves", {
+            withCredentials: true,
+          });
+
+          const allLeaves = leavesRes.data?.leaves || [];
+
+          setStats({
+            totalEmployees,
+            totalDepartments,
+            totalLeaves: allLeaves.length,
+            pendingLeaves: allLeaves.filter((l) => l.status === "pending").length,
+          });
+
+          return;
+        }
+
+        // If faculty → show only HIS leave counts
+        const myCountsRes = await axios.get(
+          "http://localhost:2713/leaves/my/counts",
+          { withCredentials: true }
+        );
+
+        const my = myCountsRes.data.counts;
 
         setStats({
-          totalEmployees: facultyRes.data?.count || 0,
-          totalDepartments: deptRes.data?.departments?.length || 0,
-          totalLeaves: allLeaves.length,
-          pendingLeaves: allLeaves.filter((l) => l.status === "pending").length,
+          totalEmployees,
+          totalDepartments,
+          totalLeaves: my.total || 0,
+          pendingLeaves: my.pending || 0,
         });
+
       } catch (err) {
         console.error("❌ Error fetching dashboard stats:", err);
       }
@@ -46,6 +80,8 @@ function Body() {
 
     fetchStats();
   }, []);
+
+
 
   // Notification Popup
   useEffect(() => {

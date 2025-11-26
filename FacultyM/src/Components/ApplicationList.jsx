@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
+import SideBar from "./SideBar";
 
 const ApplicationList = () => {
   const [filters, setFilters] = useState({
@@ -18,7 +18,7 @@ const ApplicationList = () => {
       setLoading(true);
       setError("");
 
-      const res = await fetch("http://localhost:2713/leaves", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/leaves", {
         method: "GET",
         credentials: "include",
       });
@@ -51,7 +51,7 @@ const ApplicationList = () => {
 
   const updateStatus = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:2713/leaves/${id}/status`, {
+      const res = await fetch(`https://facultyms-be-4.onrender.com/leaves/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -70,7 +70,7 @@ const ApplicationList = () => {
     if (!window.confirm("Are you sure you want to delete this leave?")) return;
 
     try {
-      const res = await fetch(`http://localhost:2713/leaves/${id}`, {
+      const res = await fetch(`https://facultyms-be-4.onrender.com/leaves/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -132,7 +132,7 @@ const ApplicationList = () => {
 
     {/* FIXED SIDEBAR */}
     <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-      <Sidebar />
+      <SideBar />
     </div>
 
     {/* MAIN CONTENT */}

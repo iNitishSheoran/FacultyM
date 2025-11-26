@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../Components/Sidebar";
+import SideBar from "./SideBar";
 import axios from "axios";
 
 const AddLeaveType = () => {
@@ -32,7 +32,7 @@ const AddLeaveType = () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:2713/leave-types",
+        "https://facultyms-be-4.onrender.com/leave-types",
         formData,
         {
           withCredentials: "true",
@@ -59,7 +59,7 @@ const AddLeaveType = () => {
       {/* Sidebar */}
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
 
       {/* Main Section */}

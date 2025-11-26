@@ -3,13 +3,13 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import universityLogo from '../assets/Univ.png';
 
-const Sidebar = () => {
+const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation(); // <--- detects current route
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:2713/logout', {}, { withCredentials: true });
+      await axios.post('https://facultyms-be-4.onrender.com/logout', {}, { withCredentials: true });
       navigate('/login');
     } catch (err) {
       console.error("Logout failed:", err);
@@ -122,4 +122,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ictImg from "../assets/Uu.png";
 import bannerImg from "../assets/Banner.png";
 import Footer from "../Components/Footer";
-import Sidebar from "../Components/Sidebar";
+import SideBar from "../Components/SideBar";
 import axios from "axios";
 import Chatbot from "../Components/Chatbot";
 import toast from "react-hot-toast";
@@ -21,24 +21,58 @@ function Body() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const facultyRes = await axios.get("http://localhost:2713/faculties", {
-          withCredentials: true,
-        });
-        const deptRes = await axios.get("http://localhost:2713/departments", {
-          withCredentials: true,
-        });
-        const leavesRes = await axios.get("http://localhost:2713/leaves", {
+        // Fetch logged-in user
+        const userRes = await axios.get("https://facultyms-be-4.onrender.com/user", {
           withCredentials: true,
         });
 
-        const allLeaves = leavesRes.data?.leaves || [];
+        const isAdmin = userRes.data?.isAdmin;
+
+        //Fetch stats common for all users (Employees + Departments)
+        const facultyRes = await axios.get("https://facultyms-be-4.onrender.com/faculties", {
+          withCredentials: true,
+        });
+
+        const deptRes = await axios.get("https://facultyms-be-4.onrender.com/departments", {
+          withCredentials: true,
+        });
+
+        const totalEmployees = facultyRes.data?.count || 0;
+        const totalDepartments = deptRes.data?.departments?.length || 0;
+
+        // If admin → show global leaves
+        if (isAdmin) {
+          const leavesRes = await axios.get("https://facultyms-be-4.onrender.com/leaves", {
+            withCredentials: true,
+          });
+
+          const allLeaves = leavesRes.data?.leaves || [];
+
+          setStats({
+            totalEmployees,
+            totalDepartments,
+            totalLeaves: allLeaves.length,
+            pendingLeaves: allLeaves.filter((l) => l.status === "pending").length,
+          });
+
+          return;
+        }
+
+        // If faculty → show only HIS leave counts
+        const myCountsRes = await axios.get(
+          "https://facultyms-be-4.onrender.com/leaves/my/counts",
+          { withCredentials: true }
+        );
+
+        const my = myCountsRes.data.counts;
 
         setStats({
-          totalEmployees: facultyRes.data?.count || 0,
-          totalDepartments: deptRes.data?.departments?.length || 0,
-          totalLeaves: allLeaves.length,
-          pendingLeaves: allLeaves.filter((l) => l.status === "pending").length,
+          totalEmployees,
+          totalDepartments,
+          totalLeaves: my.total || 0,
+          pendingLeaves: my.pending || 0,
         });
+
       } catch (err) {
         console.error("❌ Error fetching dashboard stats:", err);
       }
@@ -47,12 +81,14 @@ function Body() {
     fetchStats();
   }, []);
 
+
+
   // Notification Popup
   useEffect(() => {
     const checkNotifications = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:2713/leaves/notifications/pending",
+          "https://facultyms-be-4.onrender.com/leaves/notifications/pending",
           { withCredentials: true }
         );
 
@@ -66,7 +102,7 @@ function Body() {
           });
 
           await axios.put(
-            `http://localhost:2713/leaves/${leave._id}/mark-notified`,
+            `https://facultyms-be-4.onrender.com/leaves/${leave._id}/mark-notified`,
             {},
             { withCredentials: true }
           );
@@ -137,7 +173,7 @@ function Body() {
   return (
     <div className="min-h-screen flex bg-[#F3F4F8] font-sans overflow-x-hidden">
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white fixed left-0 top-0 overflow-y-auto">
-        <Sidebar />
+        <SideBar />
       </div>
 
       <div className="flex-1 flex flex-col ml-64">

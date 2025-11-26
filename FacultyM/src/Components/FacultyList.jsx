@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
-import Sidebar from "../Components/Sidebar";
+import SideBar from "./SideBar";
+
 
 const FacultyList = () => {
   const [facultyData, setFacultyData] = useState([]);
@@ -14,7 +15,7 @@ const FacultyList = () => {
   // Fetch current user to check admin status
   const fetchCurrentUser = async () => {
     try {
-      const res = await fetch("http://localhost:2713/user", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/user", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -31,7 +32,7 @@ const FacultyList = () => {
   const fetchFaculties = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:2713/faculties", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/faculties", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -50,7 +51,7 @@ const FacultyList = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:2713/faculty/${id}`, {
+      const res = await fetch(`https://facultyms-be-4.onrender.com/faculty/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -77,7 +78,7 @@ const FacultyList = () => {
     <div className="min-h-screen flex bg-[#F7F9FC]">
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
       <div className="flex-1 p-6">
         <div className="flex justify-between items-center mb-6">

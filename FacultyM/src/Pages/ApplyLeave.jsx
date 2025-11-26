@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
+import SideBar from "../Components/SideBar";
 import { useNavigate } from "react-router-dom";
 
 const ApplyLeave = () => {
@@ -21,7 +21,7 @@ const ApplyLeave = () => {
   // ✅ Fetch all leave types
   const fetchLeaveTypes = async () => {
     try {
-      const res = await fetch("http://localhost:2713/leave-types", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/leave-types", {
         method: "GET",
         credentials: "include",
       });
@@ -50,7 +50,7 @@ const ApplyLeave = () => {
     // If leave type changed → fetch remaining leaves
     if (name === "leaveType" && value) {
       try {
-        const res = await fetch(`http://localhost:2713/leaves/remaining/${value}`, {
+        const res = await fetch(`https://facultyms-be-4.onrender.com/leaves/remaining/${value}`, {
           method: "GET",
           credentials: "include",
         });
@@ -74,7 +74,7 @@ const ApplyLeave = () => {
     setSuccessMessage("");
 
     try {
-      const res = await fetch("http://localhost:2713/leaves/apply", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/leaves/apply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const ApplyLeave = () => {
     <div className="min-h-screen flex bg-[#F7F9FC]">
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
       <div className="flex-1 p-6 flex flex-col items-center">
         <h1 className="text-2xl font-bold text-[#001BB7] mb-6">Apply for Leave</h1>

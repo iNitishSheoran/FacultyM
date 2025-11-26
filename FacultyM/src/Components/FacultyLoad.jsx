@@ -13,7 +13,8 @@ function FacultyLoad() {
 
       const url = `https://mygbu.in/schd/load.php?school=${school}&dept=${dept}`;
       const res = await fetch(
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+        `https://facultyms-be-4.onrender.com/faculty-load?school=${school}&dept=${dept}`,
+        { credentials: "include" }
       );
 
       const html = await res.text();

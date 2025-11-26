@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import Sidebar from "./SideBar";
 
 
 const FacultyList = () => {

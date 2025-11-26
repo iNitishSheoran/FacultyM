@@ -32,7 +32,7 @@ const AddLeaveType = () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:2713/leave-types",
+        "https://facultyms-be-4.onrender.com/leave-types",
         formData,
         {
           withCredentials: "true",

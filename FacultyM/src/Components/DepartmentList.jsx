@@ -71,7 +71,7 @@ const DepartmentList = () => {
 
   const fetchCurrentUser = async () => {
     try {
-      const res = await fetch("http://localhost:2713/user", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/user", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ const DepartmentList = () => {
 
   const fetchDepartments = async () => {
     try {
-      const res = await axios.get("http://localhost:2713/departments", { withCredentials: true });
+      const res = await axios.get("https://facultyms-be-4.onrender.com/departments", { withCredentials: true });
       setDepartments(res.data.departments);
     } catch (err) {
       console.error("❌ Error fetching departments:", err);
@@ -101,7 +101,7 @@ const DepartmentList = () => {
     if (!isAdmin) return;
     try {
       const res = await axios.post(
-        "http://localhost:2713/departments",
+        "https://facultyms-be-4.onrender.com/departments",
         { name: newDept.name, code: newDept.code },
         { withCredentials: true }
       );
@@ -115,7 +115,7 @@ const DepartmentList = () => {
   const handleEditSave = async (updatedDept) => {
     try {
       const res = await axios.put(
-        `http://localhost:2713/departments/${updatedDept._id}`,
+        `https://facultyms-be-4.onrender.com/departments/${updatedDept._id}`,
         { name: updatedDept.name, code: updatedDept.code },
         { withCredentials: true }
       );
@@ -131,7 +131,7 @@ const DepartmentList = () => {
   const handleDelete = async (id, name) => {
     if (!isAdmin) return;
     try {
-      await axios.delete(`http://localhost:2713/departments/${id}`, { withCredentials: true });
+      await axios.delete(`https://facultyms-be-4.onrender.com/departments/${id}`, { withCredentials: true });
       setDepartments(departments.filter((dept) => dept._id !== id));
       setDeletedDeptName(name);
       setShowDeletePopup(true);

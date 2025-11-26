@@ -22,7 +22,7 @@ const LeaveTypeList = () => {
   // Fetch current user
   const fetchCurrentUser = async () => {
     try {
-      const res = await fetch("http://localhost:2713/user", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/user", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ const LeaveTypeList = () => {
   const fetchLeaveTypes = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:2713/leave-types", {
+      const res = await fetch("https://facultyms-be-4.onrender.com/leave-types", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -59,7 +59,7 @@ const LeaveTypeList = () => {
   const handleDelete = async (id) => {
     if (!isAdmin) return;
     try {
-      const res = await fetch(`http://localhost:2713/leave-types/${id}`, {
+      const res = await fetch(`https://facultyms-be-4.onrender.com/leave-types/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -90,7 +90,7 @@ const LeaveTypeList = () => {
   // Save edited leave type
   const handleEditSave = async () => {
     try {
-      const res = await fetch(`http://localhost:2713/leave-types/${editModal}`, {
+      const res = await fetch(`https://facultyms-be-4.onrender.com/leave-types/${editModal}`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

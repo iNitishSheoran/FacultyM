@@ -22,18 +22,18 @@ function Body() {
     const fetchStats = async () => {
       try {
         // Fetch logged-in user
-        const userRes = await axios.get("http://localhost:2713/user", {
+        const userRes = await axios.get("https://facultyms-be-4.onrender.com/user", {
           withCredentials: true,
         });
 
         const isAdmin = userRes.data?.isAdmin;
 
         //Fetch stats common for all users (Employees + Departments)
-        const facultyRes = await axios.get("http://localhost:2713/faculties", {
+        const facultyRes = await axios.get("https://facultyms-be-4.onrender.com/faculties", {
           withCredentials: true,
         });
 
-        const deptRes = await axios.get("http://localhost:2713/departments", {
+        const deptRes = await axios.get("https://facultyms-be-4.onrender.com/departments", {
           withCredentials: true,
         });
 
@@ -42,7 +42,7 @@ function Body() {
 
         // If admin → show global leaves
         if (isAdmin) {
-          const leavesRes = await axios.get("http://localhost:2713/leaves", {
+          const leavesRes = await axios.get("https://facultyms-be-4.onrender.com/leaves", {
             withCredentials: true,
           });
 
@@ -60,7 +60,7 @@ function Body() {
 
         // If faculty → show only HIS leave counts
         const myCountsRes = await axios.get(
-          "http://localhost:2713/leaves/my/counts",
+          "https://facultyms-be-4.onrender.com/leaves/my/counts",
           { withCredentials: true }
         );
 
@@ -88,7 +88,7 @@ function Body() {
     const checkNotifications = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:2713/leaves/notifications/pending",
+          "https://facultyms-be-4.onrender.com/leaves/notifications/pending",
           { withCredentials: true }
         );
 
@@ -102,7 +102,7 @@ function Body() {
           });
 
           await axios.put(
-            `http://localhost:2713/leaves/${leave._id}/mark-notified`,
+            `https://facultyms-be-4.onrender.com/leaves/${leave._id}/mark-notified`,
             {},
             { withCredentials: true }
           );

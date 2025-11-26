@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import AddDepartmentModal from "./AddDepartmentModal";
-import Sidebar from "./Sidebar";
+import Sidebar from "./SideBar";
 import axios from "axios";
 
 // EditDepartmentModal component

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ictImg from "../assets/Uu.png";
 import bannerImg from "../assets/Banner.png";
 import Footer from "../Components/Footer";
-import Sidebar from "../Components/Sidebar";
+import Sidebar from "../Components/SideBar";
 import axios from "axios";
 import Chatbot from "../Components/Chatbot";
 import toast from "react-hot-toast";

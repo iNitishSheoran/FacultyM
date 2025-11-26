@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
+import Sidebar from "../Components/SideBar";
 import { useNavigate } from "react-router-dom";
 
 const ApplyLeave = () => {

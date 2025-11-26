@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Components/Sidebar";
+import Sidebar from "./SideBar";
 
 const ApplicationList = () => {
   const [filters, setFilters] = useState({

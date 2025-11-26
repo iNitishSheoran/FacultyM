@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "./SideBar";
+import SideBar from "./SideBar";
 
 const ApplicationList = () => {
   const [filters, setFilters] = useState({
@@ -132,7 +132,7 @@ const ApplicationList = () => {
 
     {/* FIXED SIDEBAR */}
     <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-      <Sidebar />
+      <SideBar />
     </div>
 
     {/* MAIN CONTENT */}

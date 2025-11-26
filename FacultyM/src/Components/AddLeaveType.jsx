@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "./SideBar";
+import SideBar from "./SideBar";
 import axios from "axios";
 
 const AddLeaveType = () => {
@@ -59,7 +59,7 @@ const AddLeaveType = () => {
       {/* Sidebar */}
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
 
       {/* Main Section */}

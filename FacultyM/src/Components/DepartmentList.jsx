@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import AddDepartmentModal from "./AddDepartmentModal";
-import Sidebar from "./SideBar";
+import SideBar from "./SideBar";
 import axios from "axios";
 
 // EditDepartmentModal component
@@ -144,7 +144,7 @@ const DepartmentList = () => {
     <div className="flex min-h-screen bg-[#F7F9FC]">
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
       <div className="flex-1 p-6">
         {/* Header */}

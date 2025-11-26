@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ictImg from "../assets/Uu.png";
 import bannerImg from "../assets/Banner.png";
 import Footer from "../Components/Footer";
-import Sidebar from "../Components/SideBar";
+import SideBar from "../Components/SideBar";
 import axios from "axios";
 import Chatbot from "../Components/Chatbot";
 import toast from "react-hot-toast";
@@ -173,7 +173,7 @@ function Body() {
   return (
     <div className="min-h-screen flex bg-[#F3F4F8] font-sans overflow-x-hidden">
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white fixed left-0 top-0 overflow-y-auto">
-        <Sidebar />
+        <SideBar />
       </div>
 
       <div className="flex-1 flex flex-col ml-64">

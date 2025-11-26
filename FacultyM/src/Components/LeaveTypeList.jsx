@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTrash, FaEdit } from "react-icons/fa";
-import Sidebar from "./Sidebar";
+import SideBar from "./SideBar";
 
 const LeaveTypeList = () => {
   const navigate = useNavigate();
@@ -122,7 +122,7 @@ const LeaveTypeList = () => {
     <div className="flex min-h-screen bg-[#F7F9FC]">
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
 
       <div className="flex-1 p-6">

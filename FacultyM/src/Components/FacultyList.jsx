@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
-import Sidebar from "./SideBar";
+import SideBar from "./SideBar";
 
 
 const FacultyList = () => {
@@ -78,7 +78,7 @@ const FacultyList = () => {
     <div className="min-h-screen flex bg-[#F7F9FC]">
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
       <div className="flex-1 p-6">
         <div className="flex justify-between items-center mb-6">

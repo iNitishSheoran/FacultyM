@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "./Sidebar";
+import SideBar from "./SideBar";
 
 function FacultyLoad() {
   const [school, setSchool] = useState("SOICT");
@@ -65,7 +65,7 @@ function FacultyLoad() {
 
       {/* FIXED SIDEBAR */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white flex-shrink-0 sticky top-0">
-        <Sidebar />
+        <SideBar />
       </div>
 
       {/* MAIN CONTENT */}

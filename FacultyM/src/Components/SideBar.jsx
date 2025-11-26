@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import universityLogo from '../assets/Univ.png';
 
-const Sidebar = () => {
+const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation(); // <--- detects current route
 
@@ -122,4 +122,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

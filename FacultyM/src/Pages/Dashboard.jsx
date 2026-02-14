@@ -58,7 +58,7 @@ function Body() {
           return;
         }
 
-        // If faculty → show only HIS leave counts
+        // If faculty → show only HIS leave countss
         const myCountsRes = await axios.get(
           "https://facultyms-be-4.onrender.com/leaves/my/counts",
           { withCredentials: true }

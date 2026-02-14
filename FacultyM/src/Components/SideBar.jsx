@@ -99,6 +99,14 @@ const SideBar = () => {
 
         <li>
           <Link
+            to="/leaves/my"
+            className={`${isActive("/leaves/my")} hover:text-[#FF8040] transition`}
+          >
+            My Leaves
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/faculty-load"
             className={`${isActive("/faculty-load")} hover:text-[#FF8040] transition`}
           >

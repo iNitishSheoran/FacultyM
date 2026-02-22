@@ -3,7 +3,6 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/University.png";
 import axios from "axios";
-
 const Login = () => {
   const navigate = useNavigate();
 

@@ -60,7 +60,7 @@ const MyLeaves = () => {
     );
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
+    <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       
       {/* Sidebar */}
       <div className="w-64 min-w-64 h-screen shadow-lg bg-white fixed left-0 top-0">

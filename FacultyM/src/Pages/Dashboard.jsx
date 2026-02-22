@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ictImg from "../assets/Uu.png";
-import bannerImg from "../assets/Banner.png";
+// import bannerImg from "../assets/Banner.png";
 import Footer from "../Components/Footer";
 import SideBar from "../Components/SideBar";
 import axios from "axios";
@@ -8,7 +8,7 @@ import Chatbot from "../Components/Chatbot";
 import toast from "react-hot-toast";
 
 function Body() {
-  const [showBanner, setShowBanner] = useState(true);
+  // const [showBanner, setShowBanner] = useState(true);
 
   const [stats, setStats] = useState({
     totalEmployees: 0,
@@ -177,7 +177,7 @@ function Body() {
       </div>
 
       <div className="flex-1 flex flex-col ml-64">
-        {showBanner && (
+        {/* {showBanner && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 animate-fadeIn">
             <div className="relative bg-white rounded-3xl shadow-2xl p-4 max-w-4xl w-[90%] border border-gray-200 animate-scaleIn">
               <button
@@ -194,7 +194,7 @@ function Body() {
               />
             </div>
           </div>
-        )}
+        )} */}
 
         <header className="w-full shadow-md">
           <img

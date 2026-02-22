@@ -15,6 +15,8 @@ import AddLeaveType from "./Components/AddLeaveType";
 import ApplyLeave from "./Pages/ApplyLeave"
 import FacultyLoad from "./Components/FacultyLoad";
 import MyLeaves from "./Components/MyLeaves";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
         <Route path="/apply-leave" element={<ApplyLeave />} />
         <Route path="/faculty-load" element={<FacultyLoad />} />
         <Route path="/leaves/my" element={<MyLeaves />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

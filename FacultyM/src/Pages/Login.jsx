@@ -147,7 +147,9 @@ const Login = () => {
 
         {/* Footer */}
         <div className="mt-6 flex justify-between text-sm text-gray-600">
-          <a href="#" className="hover:text-[#0044FF]">Forgot Password?</a>
+          <Link to="/forgot-password" className="hover:text-[#0044FF]">
+  Forgot Password?
+</Link>
           <Link to="/signup" className="hover:text-[#FF7B3D]">Create Account</Link>
         </div>
       </div>

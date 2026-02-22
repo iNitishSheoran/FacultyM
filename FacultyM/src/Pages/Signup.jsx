@@ -37,7 +37,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "https://facultyms-be-4.onrender.com/signup",
+        "https://facultyms-be-3.onrender.com/signup",
         formData,
         { withCredentials: true }
       );

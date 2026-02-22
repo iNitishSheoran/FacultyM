@@ -14,7 +14,7 @@ const ForgotPassword = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:2713/forgot-password",
+        "https://facultyms-be-4.onrender.com/forgot-password",
         { email }
       );
 

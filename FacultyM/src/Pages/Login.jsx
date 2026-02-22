@@ -59,9 +59,15 @@ const Login = () => {
         <h1 className="text-2xl font-bold text-center text-[#0019A8]">
           Faculty Management System
         </h1>
-        <p className="text-center text-sm text-gray-600 mb-6">
-          Gautam Buddha University
-        </p>
+        <p className="text-center text-sm text-gray-500 mb-6 tracking-wide">
+  <span className="font-medium text-gray-700">
+    Gautam Buddha University
+  </span>
+  <span className="mx-2 text-gray-400">|</span>
+  <span className="font-semibold text-[#0019A8]">
+    SOICT
+  </span>
+</p>
 
         {/* Form */}
         <form className="space-y-5" onSubmit={handleSubmit}>

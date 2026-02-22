@@ -63,11 +63,17 @@ const Signup = () => {
           Create Account
         </h2>
         <h1 className="text-2xl font-bold text-center text-[#0019A8] mb-1">
-          Faculty Management System
+          Leave Management System
         </h1>
-        <p className="text-center text-sm text-gray-600 mb-5">
-          Gautam Buddha University
-        </p>
+        <p className="text-center text-sm text-gray-500 mb-6 tracking-wide">
+  <span className="font-medium text-gray-700">
+    Gautam Buddha University
+  </span>
+  <span className="mx-2 text-gray-400">|</span>
+  <span className="font-semibold text-[#0019A8]">
+    SOICT
+  </span>
+</p>
 
         {/* ✅ Fixed Form (no scroll inside card) */}
         <form className="space-y-4" onSubmit={handleSubmit}>

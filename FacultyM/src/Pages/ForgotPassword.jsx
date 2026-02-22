@@ -10,6 +10,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     setMessage("");
     setError("");
+    
 
     try {
       const res = await axios.post(

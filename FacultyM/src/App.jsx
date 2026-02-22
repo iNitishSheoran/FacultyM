@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import Login from "./Pages/Login";
@@ -16,7 +16,7 @@ import ApplyLeave from "./Pages/ApplyLeave"
 import FacultyLoad from "./Components/FacultyLoad";
 import MyLeaves from "./Components/MyLeaves";
 import ForgotPassword from "./Pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
+import ResetPassword from "./Pages/ResetPassword";
 
 
 function App() {

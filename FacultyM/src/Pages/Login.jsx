@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "https://facultyms-be-4.onrender.com/login",
+        "https://facultyms-be-3.onrender.com/login",
         { email: formData.email, password: formData.password, role: formData.role }, // ✅ include role
         { withCredentials: true }
       );

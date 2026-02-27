@@ -13,7 +13,7 @@ function FacultyLoad() {
 
       const url = `https://mygbu.in/schd/load.php?school=${school}&dept=${dept}`;
       const res = await fetch(
-        `https://facultyms-be-4.onrender.com/faculty-load?school=${school}&dept=${dept}`,
+        `https://facultyms-be-3.onrender.com/faculty-load?school=${school}&dept=${dept}`,
         { credentials: "include" }
       );
 

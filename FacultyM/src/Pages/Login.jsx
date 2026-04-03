@@ -35,10 +35,14 @@ const Login = () => {
       if (!res.data.success) throw new Error("Login failed");
 
       // Admin check
-      if (formData.role === "admin" && res.data.user.email !== "ict2025gbu@gmail.com") {
-        setError("You are not authorized as admin");
-        return;
-      }
+      if (
+  formData.role === "admin" &&
+  res.data.user.email !== "ict2025gbu@gmail.com" &&
+  res.data.user.email !== "nitish27sheoran@gmail.com"
+) {
+  setError("You are not authorized as admin");
+  return;
+}
 
       navigate("/dashboard"); // redirect after login
     } catch (err) {

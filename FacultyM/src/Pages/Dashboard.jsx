@@ -295,16 +295,3 @@ function Body() {
 }
 
 export default Body;
-
-
-// import React from 'react'
-
-// function Dashboard() {
-//   return (
-//     <div>
-//       <h1>Nope</h1>
-//     </div>
-//   )
-// }
-
-// export default Dashboard

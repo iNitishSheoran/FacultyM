@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "https://facultyms-be-3.onrender.com/login",
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
         { email: formData.email, password: formData.password, role: formData.role }, // ✅ include role
         { withCredentials: true }
       );
@@ -38,7 +38,9 @@ const Login = () => {
       if (
   formData.role === "admin" &&
   res.data.user.email !== "ict2025gbu@gmail.com" &&
-  res.data.user.email !== "nitish27sheoran@gmail.com"
+  res.data.user.email !== "nitish27sheoran@gmail.com" &&
+  res.data.user.email !== "nitishsheoran2004@gmail.com" &&
+  res.data.user.email !== "nitish2713@gmail.com"
 ) {
   setError("You are not authorized as admin");
   return;

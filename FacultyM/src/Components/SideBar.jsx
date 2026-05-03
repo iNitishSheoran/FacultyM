@@ -9,7 +9,7 @@ const SideBar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('https://facultyms-be-3.onrender.com/logout', {}, { withCredentials: true });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/logout`, {}, { withCredentials: true });
       navigate('/login');
     } catch (err) {
       console.error("Logout failed:", err);

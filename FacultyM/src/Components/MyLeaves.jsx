@@ -11,7 +11,7 @@ const MyLeaves = () => {
     const fetchLeaves = async () => {
       try {
         const res = await axios.get(
-          "https://facultyms-be-3.onrender.com/leaves/my",
+          `${import.meta.env.VITE_BACKEND_URL}/leaves/my`,
           { withCredentials: true }
         );
         setLeaves(res.data?.leaves || []);

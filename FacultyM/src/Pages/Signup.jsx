@@ -37,7 +37,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "https://facultyms-be-3.onrender.com/signup",
+        `${import.meta.env.VITE_BACKEND_URL}/signup`,
         formData,
         { withCredentials: true }
       );

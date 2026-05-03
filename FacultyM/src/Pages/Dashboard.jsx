@@ -22,18 +22,18 @@ function Body() {
     const fetchStats = async () => {
       try {
         // Fetch logged-in user
-        const userRes = await axios.get("https://facultyms-be-3.onrender.com/user", {
+        const userRes = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user`, {
           withCredentials: true,
         });
 
         const isAdmin = userRes.data?.isAdmin;
 
         //Fetch stats common for all users (Employees + Departments)
-        const facultyRes = await axios.get("https://facultyms-be-3.onrender.com/faculties", {
+        const facultyRes = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/faculties`, {
           withCredentials: true,
         });
 
-        const deptRes = await axios.get("https://facultyms-be-3.onrender.com/departments", {
+        const deptRes = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/departments`, {
           withCredentials: true,
         });
 
@@ -42,7 +42,7 @@ function Body() {
 
         // If admin → show global leaves
         if (isAdmin) {
-          const leavesRes = await axios.get("https://facultyms-be-3.onrender.com/leaves", {
+          const leavesRes = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/leaves`, {
             withCredentials: true,
           });
 
@@ -60,7 +60,7 @@ function Body() {
 
         // If faculty → show only HIS leave countss
         const myCountsRes = await axios.get(
-          "https://facultyms-be-3.onrender.com/leaves/my/counts",
+          `${import.meta.env.VITE_BACKEND_URL}/leaves/my/counts`,
           { withCredentials: true }
         );
 
@@ -88,7 +88,7 @@ function Body() {
     const checkNotifications = async () => {
       try {
         const res = await axios.get(
-          "https://facultyms-be-3.onrender.com/leaves/notifications/pending",
+          `${import.meta.env.VITE_BACKEND_URL}/leaves/notifications/pending`,
           { withCredentials: true }
         );
 
@@ -102,7 +102,7 @@ function Body() {
           });
 
           await axios.put(
-            `https://facultyms-be-3.onrender.com/leaves/${leave._id}/mark-notified`,
+            `${import.meta.env.VITE_BACKEND_URL}/leaves/${leave._id}/mark-notified`,
             {},
             { withCredentials: true }
           );

@@ -17,7 +17,7 @@ const ResetPassword = () => {
 
     try {
       const res = await axios.post(
-        `https://facultyms-be-3.onrender.com/reset-password/${token}`,
+        `${import.meta.env.VITE_BACKEND_URL}/reset-password/${token}`,
         { password }
       );
 

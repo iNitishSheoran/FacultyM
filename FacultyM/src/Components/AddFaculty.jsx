@@ -29,7 +29,7 @@ const AddFaculty = () => {
     setSuccessMessage("");
 
     try {
-      const res = await fetch("https://facultyms-be-3.onrender.com/faculty/add", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/faculty/add`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
